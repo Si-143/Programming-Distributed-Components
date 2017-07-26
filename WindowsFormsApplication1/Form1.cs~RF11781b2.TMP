@@ -1,0 +1,82 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+
+namespace WindowsFormsApplication1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'ts348DataSet.COMP1690_Restaurants' table. You can move, or remove it, as needed.
+            this.cOMP1690_RestaurantsTableAdapter.Fill(this.ts348DataSet.COMP1690_Restaurants);
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+
+            decimal price = Convert.ToDecimal(PriceBox.Text);
+           
+            string myQuery = "INSERT INTO COMP1690_Restaurants (Name,Postcode,RestType,Address_,Email,Average_Price,adType) VALUES('"  + textBox1.Text+ "','"+ textBox2.Text +"','"+ textBox3.Text +"','"+ textBox4.Text +"','"+ textBox5.Text+"','"+ price+"','"+textBox7.Text +"')";
+            SqlConnection myConnection = new SqlConnection("Data Source=SQL-SERVER;Initial Catalog=ts348;Integrated Security=True");
+            SqlCommand myCommand = new SqlCommand(myQuery, myConnection);
+            try
+            {
+                myConnection.Open();
+                myCommand.ExecuteNonQuery();
+              
+                
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string myQuery = "SELECT Name,Postcode,RestType,Address_,Email,Average_Price,adType FROM COMP1690_Restaurants Where RestaurantID ='"+ SearchBox.Text +"'";
+            SqlConnection myConnection = new SqlConnection(("Data Source=SQL-SERVER;Initial Catalog=ts348;Integrated Security=True"));
+            SqlCommand myCommand = new SqlCommand(myQuery, myConnection);
+            SqlDataReader myReader;
+            try
+            {
+                myConnection.Open();
+                myReader = myCommand.ExecuteReader();
+                while (myReader.Read())
+                {
+                    textBox1.Text = myReader["Name"].ToString();
+                    textBox2.Text = myReader["Postcode"].ToString();
+                    textBox3.Text = myReader["RestType"].ToString();
+                    textBox4.Text = myReader["Address_"].ToString();
+                    textBox5.Text = myReader["Email"].ToString();
+                    PriceBox.Text = myReader["Average_Price"].ToString();
+                    textBox7.Text = myReader["adType"].ToString();
+
+
+
+
+
+                }
+                myReader.Close();
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+    }
+}

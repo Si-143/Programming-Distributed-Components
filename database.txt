@@ -1,0 +1,27 @@
+CREATE TABLE COMP1690_Restaurants
+(
+RestaurantID int,
+Name varchar(50),
+Postcode varchar(7),
+RestType varchar(30),
+Address_ varchar(50), 
+Email varchar (50),
+Average_Price Money,
+logo image, 
+adtype varchar(10),
+PRIMARY KEY (RestaurantID),
+
+);
+
+CREATE TABLE COMP1690_Customer
+(
+CustomerID int,
+First_Name varchar(50),
+Surname varchar(7), 
+Email varchar (50),
+PassW varchar (30),
+phoneNumber int,
+Postcode varchar (7),
+CAddress varchar (50),
+PRIMARY KEY (CustomerID),
+);

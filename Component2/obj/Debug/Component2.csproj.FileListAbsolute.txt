@@ -1,0 +1,5 @@
+J:\Comp 1690\Coursework\Component2\bin\Debug\Component2.dll
+J:\Comp 1690\Coursework\Component2\bin\Debug\Component2.pdb
+J:\Comp 1690\Coursework\Component2\obj\Debug\Component2.csprojResolveAssemblyReference.cache
+J:\Comp 1690\Coursework\Component2\obj\Debug\Component2.dll
+J:\Comp 1690\Coursework\Component2\obj\Debug\Component2.pdb
